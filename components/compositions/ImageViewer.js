@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Button from "../fragments/Button";
 
-export default function ImageViewer({ src, onClose }) {
+export default function ImageViewer({ src, onClose,photoId }) {
+  alert(photoId)
   const filler = "dooooooood";
   return (
     <div className="imageviewer fixed top-0 left-0 ">

@@ -8,6 +8,6 @@ export default function GalleryController() {
     if(isLoading) return <h1>Loading...</h1>
     if(isError) return <h1 className="text-red-900">ERORR</h1>
     
-    if(!photos) return <EmptyGallery />
-    if(photos) return <Gallery /> 
+    if(photos.length == 0) return <EmptyGallery />
+    if(photos) return <Gallery photos={photos}/> 
 }

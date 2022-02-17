@@ -6,7 +6,7 @@ import modalStyles from "../../styles/modalStyle";
 
 Modal.setAppElement("#__next");
 
-export default function Gallery() {
+export default function Gallery({photos}) {
   const router = useRouter();
   const { photoId } = router.query;
   return (
@@ -18,14 +18,16 @@ export default function Gallery() {
         </p>
       </div>
       <div className="gallery-photos flex w-full flex-row flex-wrap justify-start">
-        
+        {photos.map(photo => (
+          <GalleryImage key={photo.name} photo={photo}/>
+        ))}
       </div>
       <Modal
         isOpen={!!photoId}
         onRequestClose={() => router.push("/")}
         style={modalStyles}
       >
-        <ImageViewer onClose={() => router.push("/")} />
+        <ImageViewer photoId={photoId} onClose={() => router.push("/")} />
       </Modal>
     </div>
   );

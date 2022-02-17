@@ -7,9 +7,9 @@ const config = {
     method: 'GET',
     mode: 'cors', 
     headers: {
-      'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
     },
-  }
+}
 
 export default function usePhotos() {
   const { data, error } = useSWR([url, config], fetcher);
