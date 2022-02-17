@@ -18,12 +18,7 @@ export default function Gallery() {
         </p>
       </div>
       <div className="gallery-photos flex w-full flex-row flex-wrap justify-start">
-        <GalleryImage src="/dude.jpg" fileName="sss.jpg" />
-        <GalleryImage src="/dude.jpg" fileName="sss.jpg" />
-        <GalleryImage src="/dude.jpg" fileName="sss.jpg" />
-        <GalleryImage src="/dude.jpg" fileName="sss.jpg" />
-        <GalleryImage src="/dude.jpg" fileName="sss.jpg" />
-        <GalleryImage src="/dude.jpg" fileName="sss.jpg" />
+        
       </div>
       <Modal
         isOpen={!!photoId}
