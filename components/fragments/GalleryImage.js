@@ -7,10 +7,7 @@ export default function GalleryImage({ photo }) {
     <Link href={`/?photoId=${fileName}`}
     as={`/photos/${fileName}`}>
       <a>
-        <div
-          className="my-5 cursor-pointer items-center"
-          style={{ marginRight: "3.5vw" }}
-        >
+        <div className="my-5 cursor-pointer items-center">
           <div className="image relative h-40 shadow-lg transition-shadow hover:shadow-2xl">
             <Image
               src={thumbnail_link}

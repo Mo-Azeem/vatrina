@@ -86,7 +86,7 @@ body {
 }
 
 .image {
-    min-width: 200px;
+    min-width: 180px;
     width: 12.5vw;
     transition: 0.1s;
 }
@@ -103,5 +103,12 @@ body {
     position: fixed;
     left: 50%;
     top:50%;
+    transform: translate(-50%,-50%);
+}
+
+.dead-center-bottom {
+    position: fixed;
+    left: 50%;
+    bottom:2%;
     transform: translate(-50%,-50%);
 }

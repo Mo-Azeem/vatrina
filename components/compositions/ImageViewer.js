@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Button from "../fragments/Button";
+import usePhotos from "../hooks/usePhotos";
 
-export default function ImageViewer({ src, onClose,photoId }) {
-  alert(photoId)
-  const filler = "dooooooood";
+export default function ImageViewer({ onClose,photoId }) {
+  const {photos: photo, isLoading, isError} = usePhotos(photoId) 
+  
+  if(isError) return "Error"
+  if(isLoading) return "Loading"
+ 
+  const {name, photo_link, filesize, metadata, thumbnail_link} = photo
   return (
     <div className="imageviewer fixed top-0 left-0 ">
       <div onClick={onClose} className="imageviewer-background fixed top-0 left-0 z-10 h-screen w-screen bg-black opacity-80"></div>
@@ -14,28 +19,42 @@ export default function ImageViewer({ src, onClose,photoId }) {
         <div className="image-section w-[70%] h-full">
           <div className="the-image relative h-full w-full">
             <Image
-              src="/dude.jpg"
-              alt="dude"
+              src={photo_link}
+              alt={name}
               layout="fill"
               objectFit="contain"
+              priority
             />
           </div>
         </div>
         <div className="sidesection flex w-[30%] h-full flex-col justify-around items-center bg-gray-100 rounded-tr-xl rounded-br-xl ">
           <div className="text-section text-sm font-normal leading-6 text-gray-600">
-            <p className="">Dimensions: {filler}</p>
-            <p className="">Size: {filler}</p>
-            <p className="">Image Type: {filler}</p>
-            <p className="">Bit Depth: {filler}</p>
-            <p className="">Horizontal Resolution: {filler}</p>
-            <p className="">Vertical Resolution: {filler}</p>
+            <p className="">Dimensions: <strong>{metadata.width}x{metadata.height}</strong> </p>
+            <p className="">Size: <strong> {filesize} MB</strong></p>
+            <p className="">Image Type: <strong>{metadata.format}</strong></p>
+            <p className="">Density: <strong>{metadata.density}</strong></p>
+            <p className="">Horizontal Resolution: <strong>{metadata.width}</strong></p>
+            <p className="">Vertical Resolution: <strong>{metadata.height}</strong></p>
           </div>
           <div className="download-section space-y-3">
-            <Button lable={"Full Reseloution" } logo='/download.png' />
-            <Button lable={"Thumbnail"} logo='/download.png' />
+            <Button lable={"Full Reseloution" } onClick={() => download(photo_link, name)}/>
+            <Button lable={"Thumbnail"} onClick={() => download(thumbnail_link, `thumb-${name}`)}/>
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+async function download(src, fileName) {
+  const photo = await fetch(src)
+  const photoBlog = await photo.blob()
+  const photoURL = URL.createObjectURL(photoBlog)
+
+  const link = document.createElement('a')
+  link.href = photoURL
+  link.download = fileName
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }
