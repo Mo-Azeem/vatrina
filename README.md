@@ -1,6 +1,6 @@
 # Vatrina
 
-[Imgur](https://imgur.com/DfJelTI)
+![](https://i.imgur.com/DmUUgbb.png)
 
 ### Intro
 
