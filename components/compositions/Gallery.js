@@ -17,6 +17,7 @@ export default function Gallery({ photos }) {
   const router = useRouter();
   const { photoId } = router.query;
   
+  if(!_photos.map) location.reload()
   return (
     <div className="gallery mt-5 flex w-full flex-col gap-3">
       <div className="gallery-info">

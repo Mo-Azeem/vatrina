@@ -2,7 +2,7 @@ import UploadingDialog from "../compositions/UploadDialog";
 import { useState } from "react";
 
 export default function UploadButton() {
-    const[isUploading, setIsUploading] = useState(false)
+  const [isUploading, setIsUploading] = useState(false);
   return (
     <div>
       <label
@@ -15,15 +15,20 @@ export default function UploadButton() {
           type="file"
           name="upload-file"
           id="upload-file"
-          onChange={()=>upload(setIsUploading)}
+          accept="image/*"
+          onChange={() => upload(setIsUploading)}
         />
       </label>
-      {isUploading && <UploadingDialog file={document.getElementById('upload-file').files[0]} setIsUploading={setIsUploading} />}
+      {isUploading && (
+        <UploadingDialog
+          file={document.getElementById("upload-file").files[0]}
+          setIsUploading={setIsUploading}
+        />
+      )}
     </div>
   );
 }
 
 function upload(setIsUploading) {
-  setIsUploading(true)
-
+  setIsUploading(true);
 }

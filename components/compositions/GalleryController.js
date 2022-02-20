@@ -4,7 +4,7 @@ import usePhotos from '../hooks/usePhotos'
 
 export default function GalleryController() {
     const {photos, isLoading, isError} = usePhotos()
-
+    
     if(isLoading) return <h1>Loading...</h1>
     if(isError) return <h1 className="text-red-900">ERORR</h1>
     
